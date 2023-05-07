@@ -11,19 +11,19 @@
 
 <body>
     <script>
-        let p = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve("ok")
-                // reject("error")
-                // throw "failed"
-            }, 2000)
+        // let p = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve("ok")
+        //         // reject("error")
+        //         // throw "failed"
+        //     }, 2000)
 
-            // resolve("ok")
-            // reject("error")
-            // throw "failed"
-        })
+        //     // resolve("ok")
+        //     // reject("error")
+        //     // throw "failed"
+        // })
 
-        // // Test basic then()
+        // // 1. Test basic then()
         // const result = p.then(value => {
         //     console.log(value)
         // }, reason => {
@@ -31,30 +31,81 @@
         // })
         // console.log(result)
 
-        // // Test catch()
+        // // 2. Test catch()
         // const result = p.catch(reason => {
         //     console.warn(reason)
         // })
         // console.log(result)
 
-        // Test different return type, chaining
-        const result = p.then(value => {
-            // return "hello"
-            // return new Promise((resolve, reject) => {
-            //     resolve("oh yes")
-            //     // reject("oh no")
-            // })
-            // throw 'error'
-            // console.log(value)
-            console.log(111)
-            // throw 'denied'
-        }).then(value => {
-            console.log(222)
-        }).then(value =>{
-            console.log(333)
-        })
-        console.log(result)
+        // // 3. Test different return type, chaining, error handling, void value
+        // const result = p.then(
+        //     // value => {
+        //     // return "hello"
+        //     // return new Promise((resolve, reject) => {
+        //     //     resolve("oh yes")
+        //     //     // reject("oh no")
+        //     // })
+        //     // throw 'error'
+        //     // console.log(value)
+        //     // console.log(111)
+        //     // throw 'denied'
+        //     // }
+        // ).then(value => {
+        //     console.log(222)
+        // }).then(value => {
+        //     console.log(333)
+        // }).catch(reason => {
+        //     console.warn(reason)
+        // })
+        // console.log(result)
 
+        // // 4. Test resolve()
+        // const p1 = Promise.resolve("ok")
+        // console.log(p1)
+        // const p2 = Promise.resolve(new Promise((resolve, reject) => { 
+        //     // resolve('oh yes')
+        //     reject('oh no')
+        // }))
+        // console.log(p2)
+
+        // // 5. Test reject()
+        // const p3 = Promise.reject("failed")
+        // console.log(p3)
+        // const p4 = Promise.reject(new Promise((resolve, reject) => { 
+        //     resolve("success")
+        //  }))
+        //  console.log(p4)
+     
+        // let p1 = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve('ok')
+        //     }, 2000)
+        // })
+        // let p2 = Promise.resolve('oh yes')
+        // let p3 = Promise.resolve('sucess')
+
+        // // 6. Test all()
+        // let result1 = Promise.all([p1, p2, p3])
+        // console.log(result1)
+
+        // // 7. Test race()
+        // let result2 = Promise.race([p1, p2, p3])
+        // console.log(result2)
+
+        // 8. Test async then()
+        const p1 = new Promise((resolve, reject)=>{
+            // resolve('yes')
+            reject('no')
+            console.log(111)
+        })
+
+        p1.then(value=>{
+            console.log(222)
+        }, reason=>[
+            console.log(333)
+        ])
+
+        console.log(444)
     </script>
 </body>
 
